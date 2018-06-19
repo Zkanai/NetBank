@@ -327,7 +327,7 @@ namespace NetBank.Controllers
                         provider.GetBytes(byteArray);
                         value = BitConverter.ToUInt32(byteArray, 0);
                     } while (value == 0);
-                    getNumber += ((int)(value % 10)).ToString();
+                    getNumber += ((int)(value % 9)).ToString();
                 }
             }
             // Adding the generated number to the string list.
