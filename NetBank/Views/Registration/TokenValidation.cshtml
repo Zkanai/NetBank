@@ -1,0 +1,98 @@
+﻿@model NetBank.Models.RegistrationViewModel
+
+<div>
+    <h1 class="text-center">Regisztráció Érvényesítés</h1>
+</div>
+@{
+    if (Model.TokenIsValid.Equals(false))
+    {
+        <h1 class="text-center text-danger alert-warning">A Token érvénytelen!</h1>
+    }
+    if (Model.TokenIsValid.Equals(true))
+    {
+        <section class="row p-2 m-2">
+            <div class="font-weight-bold text-center w-100">
+                A <i>@Html.DisplayFor(model => model.AccountNumber)</i> számú számlával a következő számlanyitási lehetőségei vannak.
+            </div>
+        </section>
+        <section class="row p-2 m-2 justify-content-center">
+
+            <div class="card-deck">
+                <!--Private Bank Account Creation-->
+                <div class="card choose-account-type" style="width: 24rem;">
+                    <i class="fa fa-user-o text-center p-2 m-2 my-icon" aria-hidden="true"></i>
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Magánszámla nyitása</h3>
+                        <p class="card-text">
+                            <h6>Magánszámla nyitásához szüksége lesz:</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Teljes Neve
+                                </li>
+                                <li class="list-group-item">
+                                    Személyi igazolvány számra
+                                </li>
+                                <li class="list-group-item">
+                                    Lakcímre
+                                </li>
+                                <li class="list-group-item">
+                                    Telefonszámra
+                                </li>
+                                <li class="list-group-item">
+                                    E-mail cím
+                                </li>
+                                <li class="list-group-item">
+                                    Anyja leánykori neve
+                                </li>
+                            </ul>
+                        </p>
+                        <p class="card-text text-center">
+                            <a class="btn" href="@Url.Action("PersonalBankAccountOpening","Registration",new {Id = Model.Id })">Magánszámla nyitása</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!--Business Bank Account Creation-->
+                <div class="card choose-account-type" style="width: 24rem;">
+                    <i class="fa fa-briefcase text-center p-2 m-2 my-icon" aria-hidden="true"></i>
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Vállalati számla nyitása</h3>
+                        <p class="card-text">
+                            <div class="container">
+                                <section class="row">
+                                    <h6> Cégesszámla nyitásához szüksége lesz:</h6>
+                                    <div class="col-12">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                Cég neve
+                                            </li>
+                                            <li class="list-group-item">
+                                                Telephely címe
+                                            </li>
+                                            <li class="list-group-item">
+                                                Kapcsolattartó nevére és elérhetősége
+                                            </li>
+                                            <li class="list-group-item">
+                                                Céges E-mail cím
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                Cégjegyzék száma
+                                            </li>
+                                            <li class="list-group-item">
+                                                Adószám
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                            </div>
+                        </p>
+                        <p class="card-text text-center"><a class="btn" href="@Url.Action("CompanyBankAccountOpening","Registration",new {Id = Model.Id })">Vállalati Számla nyitása</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+

@@ -1,0 +1,112 @@
+﻿@model NetBank.Models.PersonRegistrationViewModel
+
+@{
+    ViewBag.Title = "Magánszámla Nyitás";
+}
+
+@ViewBag.Message
+
+<div class="row">
+    <div class="col">
+        @Html.AntiForgeryToken()
+        @using (Html.BeginForm("PersonalBankAccountOpening", "Registration", FormMethod.Post))
+        {
+            <div class="card registration-form-card">
+                <div class="card-title">
+                    <table class="account-detail text-center">
+                        <tr>
+                            <td rowspan="2"><span class="fa fa-user"></span></td>
+                            <td><h4>Magán számlanyitás</h4></td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                </div>
+                <div class="card-body registration-body-card text-white">
+                    <div class="row">
+                        <!--RIGHT SIDE OF THE FORM-->
+                        <section class="col">
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.AccountNumber, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.HiddenFor(model => model.PersonalCommonData.AccountNumber)
+                                <i>@Html.DisplayFor(model => model.PersonalCommonData.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })</i>
+                            </p>
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.Name, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.PersonalCommonData.Name, new { htmlAttributes = new { @class = "form-control", @id = "reg-person-name" } })
+                                @Html.ValidationMessageFor(model => model.PersonalCommonData.Name, "", new { @class = "text-warning" })
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.Address, htmlAttributes: new { @class = "control-label " })
+                            </h5>
+                            <p>
+                                @Html.ValidationMessageFor(model => model.PersonalCommonData.Address ,"", new { @class = "text-warning" })
+                                @Html.EditorFor(model => model.PersonalCommonData.Address, new { htmlAttributes = new { @class = "form-control", @id = "reg-person-address" } })
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.Password, htmlAttributes: new { @class = "control-label " })
+                            </h5>
+                            <p>
+                                @Html.ValidationMessageFor(model => model.PersonalCommonData.Password, "", new { @class = "text-warning" })
+                                @Html.PasswordFor(model => model.PersonalCommonData.Password, new { @class = "form-control reg-password", @placeholder = "******" })
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.MotherName, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-warning" })
+                                @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control", @id = "reg-person-mothername" } })
+                            </p>
+                        </section>
+
+                        <!--LEFT SIDE OF THE FORM-->
+                        <section class="col">
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.EmailAddress, htmlAttributes: new { @class = "control-label" })
+
+                            </h5>
+                            <p>
+                                @Html.HiddenFor(model => model.PersonalCommonData.EmailAddress)
+                                <i> @Html.DisplayFor(model => model.PersonalCommonData.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</i>
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.TelephoneNumber, htmlAttributes: new { @class = "control-label " })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.PersonalCommonData.TelephoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "+3620/12-34-567", @id = "reg-person-telephone" } })
+                                @Html.ValidationMessageFor(model => model.PersonalCommonData.TelephoneNumber, "", new { @class = "text-warning" })
+                            </p>
+                            <h5>
+                                @Html.LabelFor(model => model.IdNumber, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.IdNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "123456AB", @id = "reg-person-identification" } })
+                                @Html.ValidationMessageFor(model => model.IdNumber, "", new { @class = "text-warning" })
+                            </p>
+                            <h5>
+                                @Html.LabelFor(model => model.PersonalCommonData.ConfirmPassword, htmlAttributes: new { @class = "control-label " })
+                            </h5>
+                            <p>
+                                @Html.PasswordFor(model => model.PersonalCommonData.ConfirmPassword, new { @class = "form-control reg-confirm-password", @placeholder = "******" })
+                                @Html.ValidationMessageFor(model => model.PersonalCommonData.ConfirmPassword, "", new { @class = "text-warning" })
+                            </p>
+                        </section>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group text-center submit-button">
+                <input type="submit" value="Regisztrálás" class="btn" />
+            </div>
+            <!--END OF THE MAIN FORM-->
+        }
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model NetBank.Models.HomeViewModel
+
+<div class="justify-content-center">
+    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Index_Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+    <div class="card-deck login-form">
+        <div class="card">
+            <article class="card-body">
+                <h4 class="card-title mb-4 mt-1 text-center">Bejelentkezés</h4>
+                <div class="form-group">
+                    <label>Az ön email címe</label>
+                    <input name="Email" class="form-control" placeholder="Email" type="email">
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <label>Jelszó</label>
+                    <input name="Password" class="form-control" placeholder="******" type="password">
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Bejelentkezés</button>
+                </div> <!-- form-group// -->
+            </article>
+        </div> <!-- card.// -->
+
+        <div class="card text-center">
+            <article class="card-body">
+                    <h4 class="text-center set-middle">
+                        Igényeljen új bankszámlát
+                    </h4>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary align-items-lg-center" data-toggle="modal" data-target="#exampleModal">Új Számla Igénylése</button>
+                    <!-- Button trigger modal -->
+            </article>
+        </div>
+        <!-- card.// -->
+    </div>
+
+    }
+</div>
+

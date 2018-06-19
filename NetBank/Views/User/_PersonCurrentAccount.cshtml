@@ -1,0 +1,57 @@
+﻿@model NetBank.Models.UserViewModel
+
+<div class="card user-account-text">
+    
+    <div class="card-title">
+        <table class="account-detail">
+            <tr>
+                <td rowspan="2"><span class="fa fa-user"></span></td>
+                <td><h5 class="text-center">Magánszámla</h5></td>
+            </tr>
+            <tr>
+                <td>
+                    <h5 class="text-center">@Html.DisplayFor(model => model.PersonView.FullName)</h5>
+                </td>
+            </tr>
+        </table>
+    </div>  
+    <div class="card-body">
+        <!--ÚJ SZEKCIÓ-->
+        <h5>
+            @Html.DisplayNameFor(model => model.GeneralData.AccountNumber)
+        </h5>
+        <p>
+            @Html.DisplayFor(model => model.GeneralData.AccountNumber)
+        </p>
+        <h5>
+            @Html.DisplayNameFor(model => model.GeneralData.AccountOpenedDate)
+        </h5>
+        <p>
+            @Html.DisplayFor(model => model.GeneralData.AccountOpenedDate)
+        </p>
+        <h5>
+            @Html.DisplayNameFor(model => model.GeneralData.Balance)
+        </h5>
+        <p>
+            @Html.DisplayFor(model => model.GeneralData.Balance)
+        </p>
+        <h5>
+            @Html.DisplayNameFor(model => model.PersonView.Address)
+        </h5>
+        <p>
+            @Html.DisplayFor(model => model.PersonView.Address)
+        </p>
+        <h5>
+            @Html.DisplayNameFor(model => model.PersonView.TelephoneNumber)
+        </h5>
+        <p>
+            @Html.DisplayFor(model => model.PersonView.TelephoneNumber)
+        </p>
+        <h5>
+            @Html.DisplayNameFor(model => model.PersonView.MotherName)
+        </h5>
+        <p>
+            @Html.DisplayFor(model => model.PersonView.MotherName)
+        </p>
+    </div>
+</div>

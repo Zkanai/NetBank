@@ -1,0 +1,112 @@
+﻿@model NetBank.Models.CompanyRegistrationViewModel
+
+@{
+    ViewBag.Title = "Céges számlanyitás";
+}
+
+@ViewBag.Message
+
+<div class="row">
+    <div class="col">
+        @Html.AntiForgeryToken()
+        @using (Html.BeginForm("CompanyBankAccountOpening", "Registration", FormMethod.Post))
+        {
+            <div class="card registration-form-card">
+                <div class="card-title">
+                    <table class="account-detail text-center">
+                        <tr>
+                            <td rowspan="2"><span class="fa fa-briefcase"></span></td>
+                            <td><h4>Céges számlanyitás</h4></td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                </div>
+                <div class="card-body registration-body-card text-white">
+                    <div class="row">
+                        <section class="col">
+                            <h5>@Html.LabelFor(model => model.CompanyCommonData.AccountNumber, htmlAttributes: new { @class = "control-label" })</h5>
+                            @Html.HiddenFor(model => model.CompanyCommonData.AccountNumber)
+
+                            <p><i> @Html.DisplayFor(model => model.CompanyCommonData.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })</i></p>
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyCommonData.Name, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.CompanyCommonData.Name, new { htmlAttributes = new { @class = "form-control", @id = "reg-company-name" } })
+                                @Html.ValidationMessageFor(model => model.CompanyCommonData.Name,"",new { @class = "text-warning"} )
+                            </p>
+                            <h5>
+                                @Html.LabelFor(model => model.TaxNumber, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.TaxNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "12345678-1-23", @id = "reg-company-taxnumber" } })
+                                @Html.ValidationMessageFor(model => model.TaxNumber, "", new { @class = "text-warning" })
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyRegistryNumber, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.CompanyRegistryNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "00-00-000000", @id = "reg-company-registry" } })
+                                @Html.ValidationMessageFor(model => model.CompanyRegistryNumber, "", new { @class = "text-warning" })
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyCommonData.Password, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.PasswordFor(model => model.CompanyCommonData.Password, new { @class = "form-control reg-password", @placeholder = "******" })
+                                @Html.ValidationMessageFor(model => model.CompanyCommonData.Password, "", new { @class = "text-warning" })
+                            </p>
+
+                        </section>
+                        <!--Right Side of the form-->
+                        <section class="col">
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyCommonData.EmailAddress, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            @Html.HiddenFor(model => model.CompanyCommonData.EmailAddress)
+
+                            <p><i>@Html.DisplayFor(model => model.CompanyCommonData.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</i></p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyCommonData.Address, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.CompanyCommonData.Address, new { htmlAttributes = new { @class = "form-control inline-block", @id = "reg-company-address" } })
+                                @Html.ValidationMessageFor(model => model.CompanyCommonData.Address, "", new { @class = "text-warning" })
+                            </p>
+                            <h5>
+                                @Html.LabelFor(model => model.ContactName, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control", @id = "reg-company-contactname" } })
+                                @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-warning" })
+                            </p>
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyCommonData.TelephoneNumber, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.EditorFor(model => model.CompanyCommonData.TelephoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "+3620/12-34-567", @id = "reg-company-telephone" } })
+                                @Html.ValidationMessageFor(model => model.CompanyCommonData.TelephoneNumber, "", new { @class = "text-warning" })
+                            </p>
+
+                            <h5>
+                                @Html.LabelFor(model => model.CompanyCommonData.ConfirmPassword, htmlAttributes: new { @class = "control-label" })
+                            </h5>
+                            <p>
+                                @Html.PasswordFor(model => model.CompanyCommonData.ConfirmPassword, new { @class = "form-control reg-confirm-password", @placeholder = "******" })
+                                @Html.ValidationMessageFor(model => model.CompanyCommonData.ConfirmPassword, "", new { @class = "text-warning" })
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center submit-button">
+                <input type="submit" value="Regisztrálás" class="btn" />
+            </div>
+            <!--END OF THE MAIN FORM-->
+
+        }
+    </div>
+</div>

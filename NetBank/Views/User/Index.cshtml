@@ -1,0 +1,125 @@
+﻿@model NetBank.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="row p-3 m-3">
+
+    <div class="col-12 col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        @{
+            if (Model.GeneralData.IsCompany == true)
+            {
+                @Html.Partial("_CompanyCurrentAccount")
+            }
+            else
+            {
+                @Html.Partial("_PersonCurrentAccount")
+            }
+        }
+    </div>
+    <div class="col-12 col-xl-9 col-lg-9 col-md-6 col-sm-12">
+        <div id="search-filter-bar">
+            <h3>Egyéni szűrés</h3>
+            <hr />
+            @using (Ajax.BeginForm("User_Transaction_Search", new AjaxOptions { UpdateTargetId = "transactions", InsertionMode = InsertionMode.Replace }))
+            {
+                @Html.HiddenFor(model => model.GeneralData.AccountNumber)
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div>
+                                @Html.LabelFor(model => model.Transactions.FilterRow.Amount)
+                            </div>
+                            @Html.TextBoxFor(model => model.Transactions.FilterRow.Amount, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                @Html.LabelFor(model => model.Transactions.FilterRow.ToAccount)
+                            </div>
+                            @Html.TextBoxFor(model => model.Transactions.FilterRow.ToAccount, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <div>
+                                @Html.LabelFor(model => model.Transactions.FilterRow.FromAccount)
+                            </div>
+                            @Html.TextBoxFor(model => model.Transactions.FilterRow.FromAccount, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                @Html.LabelFor(model => model.Transactions.FilterRow.StartDate)
+                            </div>
+                            @Html.EditorFor(model => model.Transactions.FilterRow.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <div>
+                                @Html.LabelFor(model => model.Transactions.FilterRow.ExpiryDate)
+                            </div>
+                            @Html.EditorFor(model => model.Transactions.FilterRow.ExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="form-group">
+                            <div>
+                                @Html.LabelFor(model => model.Transactions.FilterRow.Description)
+                            </div>
+                            @Html.TextBoxFor(model => model.Transactions.FilterRow.Description, new { @class="form-control date-picker" })
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="submit" class="btn btn-outline-secondary" value="Szűrés" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <h3>Gyors szűrés</h3>
+                </div>
+                <div class="col">
+                    @using (Ajax.BeginForm("User_Transaction_Expenses", new AjaxOptions { UpdateTargetId = "transactions", InsertionMode = InsertionMode.Replace }))
+                    {
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.Amount)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.StartDate)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.ExpiryDate)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.ToAccount)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.Description)
+
+                        <input type="submit" class="btn btn-warning" value="Kiadások" />
+                    }
+                </div>
+                <div class="col">
+                    @using (Ajax.BeginForm("User_Transaction_Income", new AjaxOptions { UpdateTargetId = "transactions", InsertionMode = InsertionMode.Replace }))
+                    {
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.Amount)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.StartDate)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.ExpiryDate)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.ToAccount)
+                        @Html.HiddenFor(model => model.Transactions.FilterRow.Description)
+
+                        <input type="submit" class="btn btn-warning" value="Bevétel" />
+                    }
+                </div>
+            </div>
+            <hr />
+        </div>
+        <div id="transactions" class="table-responsive">
+            @Html.Action("CurrentUser_TransactionHistory")
+        </div>
+    </div>
+</section>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netbank</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid mx-auto" id="main-nav">
+
+        <nav class="navbar nav navbar-expand-md sticky-top justify-content-between" id="nav-bar">
+            <div class="navbar-collapse collapse justify-content-start">
+                <ul class="nav justify-content-start text-white">
+                    <li>
+                        @Html.ActionLink("NetBank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand btn" })
+                    </li>
+                    @{
+                        if (SessionState.Current.CurrentAccountId != null)
+                        {
+                            <li class="nav-item btn">@Html.ActionLink("Saját Számla", "Index", "User")</li>
+                            <li class="nav-item btn">@Html.ActionLink("Pénzügyek", "Index", "ManageMoney")</li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse justify-content-end">
+                <ul class="nav justify-content-end text-white my-2 my-lg-0">
+                    @{
+                        if (SessionState.Current.CurrentAccountId != null)
+                        {
+                            <li class="nav-item display-name"><span>Üdvözöljük @SessionState.Current.CurrentUserName!</span></li>
+                            <li class="nav-item btn">@Html.ActionLink("Kijelentkezés", "Logout", "Home")</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid content">
+        @RenderBody()
+        <!--FOOTER WITH ADDITIONAL INFORMATION-->
+    </div>
+    <!--FOOTER WITH ADDITIONAL INFORMATION-->
+    <footer class="container-fluid footer-class text-center text-white">
+        <div class="row footer-row">
+            <section class="col-md-4">
+                <div>Cím</div>
+                <div>Budapest 1298 Példa utca 17.</div>
+            </section>
+
+            <section class="col-md-4">
+                <div>&copy; @DateTime.Now.Year - Netbank</div>
+                <div>
+                </div>
+            </section>
+
+            <section class="col-md-4">
+                <div>SzuperBank</div>
+                <div>A Szuperbank oldala</div>
+            </section>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

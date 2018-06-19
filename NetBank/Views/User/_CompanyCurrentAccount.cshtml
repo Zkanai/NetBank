@@ -1,0 +1,56 @@
+﻿@model NetBank.Models.UserViewModel
+
+<div class="card user-account-text">
+    <div class="card-title">
+        <table class="account-detail">
+            <tr>
+                <td rowspan="2"><span class="fa fa-briefcase"></span></td>
+                <td><h5 class="text-center">Céges számla</h5></td>
+            </tr>
+            <tr>
+                <td>
+                    <h5 class="text-center">@Html.DisplayFor(model => model.CompanyView.CompanyName)</h5>
+                </td>
+            </tr>
+        </table>
+    </div>  
+    <h2 class="text-center">@Html.DisplayFor(model => model.CompanyView.CompanyName)</h2>
+    <div class="card-body">
+                <h5>
+                    @Html.DisplayNameFor(model => model.GeneralData.AccountNumber)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.GeneralData.AccountNumber)
+                </p>
+                <h5>
+                    @Html.DisplayNameFor(model => model.GeneralData.AccountOpenedDate)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.GeneralData.AccountOpenedDate)
+                </p>
+                <h5>
+                    @Html.DisplayNameFor(model => model.GeneralData.Balance)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.GeneralData.Balance)
+                </p>
+                <h5>
+                    @Html.DisplayNameFor(model => model.CompanyView.Address)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.CompanyView.Address)
+                </p>
+                <h5>
+                    @Html.DisplayNameFor(model => model.CompanyView.TelephoneNumber)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.CompanyView.TelephoneNumber)
+                </p>
+                <h5>
+                    @Html.DisplayNameFor(model => model.CompanyView.ContactName)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.CompanyView.ContactName)
+                </p>
+    </div>
+</div>

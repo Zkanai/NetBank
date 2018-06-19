@@ -1,0 +1,67 @@
+﻿@model NetBank.Models.ManageMoneyViewModel
+<div class="col-md-6">
+    <div class="card p-4 m-2">
+        <div class="card-title">
+            <table class="account-detail text-center">
+                <tr>
+                    <td rowspan="2"><span class="fa fa-bar-chart"></span></td>
+                    <td><h4>Utalás indítása</h4></td>
+                </tr>
+                <tr></tr>
+            </table>
+        </div>
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @using (Html.BeginForm("Index_Transaction", "ManageMoney", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary();
+
+                <section class="p-1 m-0 w-100">
+                    <h5>
+                        @Html.LabelFor(model => model.NewTransaction.FromAccount, new { htmlAttributes = new { @class = "control-label" } }):
+                    </h5>
+                    @Html.HiddenFor(model => model.NewTransaction.FromAccount)
+                    <p class="text-center">
+                        <i >
+                            @Html.DisplayFor(model => model.NewTransaction.FromAccount)
+                        </i>
+                    </p>
+                </section>
+
+                <section class="p-1 m-0">
+                    <div>
+                        <h5>
+                            @Html.LabelFor(model => model.NewTransaction.ToAccount, new { htmlAttributes = new { @class = "control-label" } })
+                        </h5>
+                    </div>
+                    @Html.TextBoxFor(model => model.NewTransaction.ToAccount, new { @class = "form-control" })
+                </section>
+
+                <section class="p-1 m-0">
+                        <h5>
+                            @Html.LabelFor(model => model.NewTransaction.Amount, new { htmlAttributes = new { @class = "control-label" } }):
+                        </h5>
+                    @Html.TextBoxFor(model => model.NewTransaction.Amount, new { @class = "form-control" })
+                </section>
+
+                <section class="p-1 m-0">
+                    <h5>
+                        @Html.LabelFor(model => model.NewTransaction.TransactionDueDate, new { @class = "control-label" } ):
+                    </h5>
+                    @Html.EditorFor(model => model.NewTransaction.TransactionDueDate, new { htmlAttributes = new { @class = "form-control" } })
+                </section>
+
+                <section class="p-1 m-0 ">
+                    <h5>
+                        @Html.LabelFor(model => model.NewTransaction.Description,new { @class = "control-label" } )
+                    </h5>
+                    @Html.TextAreaFor(model => model.NewTransaction.Description,new {@class= "form-control" })
+                </section>
+
+                <div class="p-1 m-1 text-center">
+                    <input type="submit" value="Indítás" class="btn" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

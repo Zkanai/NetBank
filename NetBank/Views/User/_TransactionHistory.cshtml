@@ -1,0 +1,25 @@
+﻿@model NetBank.Models.UserViewModel
+<h1 class="text-center">Számlakivonat</h1>
+<table class="table" title="Tranzakciók">
+    <tr>
+        <td>Kezdeményező</td>
+        <td>Utalás indítása</td>
+        <td>Összeg</td>
+        <td>Kedvezményezett</td>
+        <td>Lejárati Idő</td>
+        <td>Megjegyzés</td>
+    </tr>
+    <tbody class="table-striped">
+        @foreach (var item in Model.Transactions.DefaultRow)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TransactionFromAccount)</td>
+                <td>@Html.DisplayFor(modelItem => item.TransactionStartDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.TransactionAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.TransactionToAccount)</td>
+                <td>@Html.DisplayFor(modelItem => item.TransactionDueDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.TransactionDescription)</td>
+            </tr>
+        }
+    </tbody>
+</table>
